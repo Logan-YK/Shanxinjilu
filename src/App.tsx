@@ -2,6 +2,7 @@ import { BrowserRouter, Navigate, Route, Routes, useParams } from 'react-router-
 import { AppProvider, CategoryIdProvider } from './context/AppContext'
 import { CATEGORY_BY_ID } from './constants'
 import type { CategoryId } from './types'
+import { AppFooter } from './components/AppFooter'
 import { Home } from './pages/Home'
 import { CategoryPage } from './pages/CategoryPage'
 
@@ -28,11 +29,14 @@ export default function App() {
   return (
     <AppProvider>
       <BrowserRouter basename={routerBasename}>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/category/:id" element={<CategoryRoute />} />
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
+        <div className="app-shell">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/category/:id" element={<CategoryRoute />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+          <AppFooter />
+        </div>
       </BrowserRouter>
     </AppProvider>
   )

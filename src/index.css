@@ -52,11 +52,34 @@ button {
   color: inherit;
 }
 
+.app-shell {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-shell .page {
+  flex: 1;
+}
+
 .page {
   max-width: 480px;
   margin: 0 auto;
-  min-height: 100dvh;
-  padding: calc(12px + var(--safe-top)) 16px calc(24px + var(--safe-bottom));
+  width: 100%;
+  min-height: 0;
+  padding: calc(12px + var(--safe-top)) 16px 16px;
+}
+
+.app-footer {
+  flex-shrink: 0;
+  max-width: 480px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 8px 16px calc(12px + var(--safe-bottom));
+  text-align: center;
+  font-size: 0.7rem;
+  color: #9a8f84;
+  letter-spacing: 0.02em;
 }
 
 /* Home */

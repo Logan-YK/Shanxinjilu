@@ -3,9 +3,9 @@ import { formatAmount } from './dateUtils'
 import { subtotal, totalDonation } from './totals'
 import type { DayCategories } from '../types'
 
-export function buildMainCopyText(_date: string, data: DayCategories): string {
+export function buildMainCopyText(date: string, data: DayCategories): string {
   const total = totalDonation(data)
-  const lines: string[] = [`总善款：${formatAmount(total)}`]
+  const lines: string[] = [date, `总善款：${formatAmount(total)}`]
 
   for (const id of DONATION_CATEGORY_IDS) {
     const amount = subtotal(data, id)
@@ -20,7 +20,7 @@ export function buildMainCopyText(_date: string, data: DayCategories): string {
 
 export function buildFangshengCopyText(date: string, data: DayCategories): string {
   const amount = subtotal(data, 'fangsheng')
-  return `${date} 放生：${formatAmount(amount)}`
+  return `${date}\n放生：${formatAmount(amount)}`
 }
 
 export async function copyToClipboard(text: string): Promise<boolean> {

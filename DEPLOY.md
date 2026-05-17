@@ -59,11 +59,22 @@ git push -u origin main
 - **项目站**（仓库名不是 `用户名.github.io`）  
   地址为：  
   `https://你的用户名.github.io/仓库名/`  
-  例如：`https://zhangsan.github.io/shanxinjulu/`
+  **路径必须与 GitHub 仓库名完全一致（区分大小写）。**
+
+  本仓库示例（Logan-YK / Shanxinjilu）：
+
+  **`https://logan-yk.github.io/Shanxinjilu/`**
+
+  注意末尾的 `/`，以及 **`Shanxinjilu` 首字母大写**。  
+  下面地址会 404，不要用：
+  - `https://logan-yk.github.io/`（缺少仓库名）
+  - `https://logan-yk.github.io/shanxinjilu/`（大小写不对）
 
 - **用户站**（仓库必须命名为 `你的用户名.github.io`）  
   地址为：`https://你的用户名.github.io/`  
   此时需在构建时把基础路径设为 `/`（见下文「特殊：用户站」）。
+
+在 GitHub 仓库页：**Settings → Pages**，部署成功后会显示 **Visit site** 链接，以该链接为准（最不容易写错）。
 
 ### 第 5 步：在 Vivo X200 Pro 上安装
 
@@ -174,11 +185,23 @@ npm run build
 
 ## 八、常见问题
 
-### 打开 Pages 后是白屏或 404
+### 打开 Pages 后显示 “There isn't a GitHub Pages site here” 或 404
 
-- 确认访问 URL **末尾有仓库名路径**，例如 `.../shanxinjulu/` 而不是只打开 `.../github.io/`。
-- 确认 Actions 已成功，且 Settings → Pages 的 Source 是 **GitHub Actions**。
-- 清除浏览器缓存后重试，或无痕模式打开。
+1. **先核对完整 URL**（最常见原因）  
+   - 项目站必须是：`https://用户名.github.io/仓库名/`  
+   - **仓库名大小写必须与 GitHub 上一致**（例如 `Shanxinjilu` ≠ `shanxinjilu`）。  
+   - 不要只打开 `https://用户名.github.io/`。
+
+2. **用 GitHub 给的链接**  
+   仓库 → **Settings → Pages** → 看是否已有 **Visit site**；或 **Actions** 里最近一次成功的 **Deploy to GitHub Pages** → 右侧环境链接。
+
+3. **确认 Pages 已启用**  
+   Settings → Pages → Source = **GitHub Actions**（不是 “Deploy from a branch”）。
+
+4. **确认 Actions 已成功**  
+   **Actions** 标签 → **Deploy to GitHub Pages** 为绿色勾；若失败，点进去看红色步骤的报错。
+
+5. 首次部署完成后等待 **1～3 分钟** 再刷新；仍不行则清除缓存或用无痕模式。
 
 ### 添加到主屏幕后打不开 / 不是全屏
 

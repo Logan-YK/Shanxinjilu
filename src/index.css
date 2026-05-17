@@ -370,13 +370,15 @@ button {
 
 .keypad-display-row {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  gap: 8px;
   margin-bottom: 12px;
 }
 
 .keypad-display {
   flex: 1;
-  font-size: 2rem;
+  min-width: 0;
+  font-size: clamp(1.35rem, 6vw, 2rem);
   font-weight: 600;
   text-align: right;
   padding: 10px 12px;
@@ -385,12 +387,17 @@ button {
   color: var(--primary);
   overflow: hidden;
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .keypad-confirm {
-  flex-shrink: 0;
-  min-width: 72px;
-  padding: 10px 16px;
+  flex: 0 0 auto;
+  width: 3.25rem;
+  min-width: 3.25rem;
+  padding: 10px 4px;
+  font-size: 0.8rem;
+  line-height: 1.15;
+  white-space: nowrap;
 }
 
 .keypad-grid {
@@ -432,44 +439,21 @@ button {
 }
 
 .record-item {
-  position: relative;
   margin-bottom: 8px;
-  overflow: hidden;
-  border-radius: var(--radius);
-}
-
-.record-delete-action {
-  position: absolute;
-  right: 0;
-  top: 0;
-  bottom: 0;
-  width: 88px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--danger);
-}
-
-.record-delete-btn {
-  color: #fff;
-  font-weight: 600;
-  width: 100%;
-  height: 100%;
 }
 
 .record-row {
-  position: relative;
-  z-index: 1;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 16px 18px;
+  gap: 8px;
+  padding: 14px 12px 14px 16px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  transition: transform 0.15s ease-out;
   text-align: left;
+  cursor: pointer;
 }
 
 .record-item-active .record-row {
@@ -478,13 +462,39 @@ button {
 }
 
 .record-amount {
+  flex: 1;
+  min-width: 0;
   font-size: 1.25rem;
   font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.record-row-end {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
 }
 
 .record-time {
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   color: var(--text-muted);
+}
+
+.record-delete-inline {
+  flex-shrink: 0;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--danger);
+  background: rgba(179, 58, 58, 0.08);
+  border-radius: 6px;
+  border: 1px solid rgba(179, 58, 58, 0.25);
+}
+
+.record-delete-inline:active {
+  background: rgba(179, 58, 58, 0.18);
 }
 
 /* Toast */

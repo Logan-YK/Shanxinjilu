@@ -33,6 +33,8 @@ npm run preview
 
 详见 **[DEPLOY.md](./DEPLOY.md)**：包含推送到 GitHub、开启 Pages、在 Vivo 上「添加到主屏幕」的完整步骤。
 
+已部署地址（注意大小写）：**https://logan-yk.github.io/Shanxinjilu/**
+
 ## 在 Vivo X200 Pro 上安装（不上应用商店）
 
 1. 在电脑上执行 `npm run build`，将 `dist` 文件夹传到手机，或在同一 Wi‑Fi 下用电脑运行：

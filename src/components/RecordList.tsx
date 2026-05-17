@@ -1,4 +1,3 @@
-import { useRef, useState } from 'react'
 import { formatAmount, formatTime } from '../lib/dateUtils'
 import type { Entry } from '../types'
 
@@ -8,8 +7,6 @@ interface RecordListProps {
   onSelect: (entry: Entry) => void
   onDelete: (entryId: string) => void
 }
-
-const SWIPE_THRESHOLD = 60
 
 export function RecordList({
   entries,
@@ -53,65 +50,40 @@ function RecordRow({
   onSelect: () => void
   onDelete: () => void
 }) {
-  const [offset, setOffset] = useState(0)
-  const [revealed, setRevealed] = useState(false)
-  const startX = useRef(0)
-  const dragging = useRef(false)
-
-  const onTouchStart = (e: React.TouchEvent) => {
-    startX.current = e.touches[0].clientX
-    dragging.current = true
-  }
-
-  const onTouchMove = (e: React.TouchEvent) => {
-    if (!dragging.current) return
-    const dx = e.touches[0].clientX - startX.current
-    if (dx < 0) {
-      setOffset(Math.max(dx, -88))
-    } else if (revealed) {
-      setOffset(Math.min(dx - 88, 0))
-    }
-  }
-
-  const onTouchEnd = () => {
-    dragging.current = false
-    if (offset < -SWIPE_THRESHOLD) {
-      setOffset(-88)
-      setRevealed(true)
-    } else {
-      setOffset(0)
-      setRevealed(false)
-    }
-  }
-
-  const handleDeleteClick = () => {
+  const handleDelete = (e: React.MouseEvent) => {
+    e.stopPropagation()
     if (window.confirm('删除这条记录？')) {
       onDelete()
-    } else {
-      setOffset(0)
-      setRevealed(false)
     }
   }
 
   return (
     <li className={`record-item ${active ? 'record-item-active' : ''}`}>
-      <div className="record-delete-action">
-        <button type="button" className="record-delete-btn" onClick={handleDeleteClick}>
-          删除
-        </button>
-      </div>
-      <button
-        type="button"
+      <div
         className="record-row"
-        style={{ transform: `translateX(${offset}px)` }}
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
+        role="button"
+        tabIndex={0}
         onClick={onSelect}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault()
+            onSelect()
+          }
+        }}
       >
         <span className="record-amount">{formatAmount(entry.amount)}</span>
-        <span className="record-time">{formatTime(entry.createdAt)}</span>
-      </button>
+        <div className="record-row-end">
+          <span className="record-time">{formatTime(entry.createdAt)}</span>
+          <button
+            type="button"
+            className="record-delete-inline"
+            onClick={handleDelete}
+            aria-label="删除记录"
+          >
+            删除
+          </button>
+        </div>
+      </div>
     </li>
   )
 }

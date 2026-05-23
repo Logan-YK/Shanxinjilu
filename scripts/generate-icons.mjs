@@ -13,6 +13,10 @@ const maskableSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 51
 </svg>`
 
 const sizes = [
+  { name: 'pwa-48.png', size: 48 },
+  { name: 'pwa-72.png', size: 72 },
+  { name: 'pwa-96.png', size: 96 },
+  { name: 'pwa-144.png', size: 144 },
   { name: 'pwa-192.png', size: 192 },
   { name: 'pwa-512.png', size: 512 },
   { name: 'apple-touch-icon.png', size: 180 },

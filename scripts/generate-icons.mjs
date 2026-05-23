@@ -21,13 +21,18 @@ const sizes = [
   { name: 'pwa-512.png', size: 512 },
   { name: 'apple-touch-icon.png', size: 180 },
   { name: 'pwa-maskable-512.png', size: 512, svg: maskableSvg },
+  { name: 'favicon.ico', size: 48, ico: true },
 ]
 
-for (const { name, size, svg } of sizes) {
-  const buf = await sharp(Buffer.from(svg ?? iconSvg))
-    .resize(size, size)
-    .png()
-    .toBuffer()
-  writeFileSync(join(publicDir, name), buf)
+for (const { name, size, svg, ico } of sizes) {
+  let pipeline = sharp(Buffer.from(svg ?? iconSvg)).resize(size, size)
+  if (ico) {
+    const pngBuf = await pipeline.png().toBuffer()
+    // 48x48 PNG header works as favicon.ico for most mobile browsers
+    writeFileSync(join(publicDir, name), pngBuf)
+  } else {
+    const buf = await pipeline.png().toBuffer()
+    writeFileSync(join(publicDir, name), buf)
+  }
   console.log(`Wrote public/${name}`)
 }

@@ -75,7 +75,7 @@ export function Home() {
             <button
               key={cat.id}
               type="button"
-              className="category-btn"
+              className={`category-btn${cat.id === 'fangsheng' ? ' category-btn-fangsheng' : ''}`}
               onClick={() => navigate(`/category/${cat.id}`)}
             >
               <span className="category-btn-label">{cat.label}</span>

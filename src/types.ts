@@ -5,6 +5,11 @@ export type CategoryId =
   | 'gongseng'
   | 'qita'
   | 'fangsheng'
+  | 'gongzhai'
+  | 'gonghua'
+  | 'gongguo'
+  | 'gongxiang'
+  | 'fabao'
 
 export interface Entry {
   id: string

@@ -1,4 +1,4 @@
-import { DONATION_CATEGORY_IDS } from '../constants'
+import { CATEGORIES, DONATION_CATEGORY_IDS } from '../constants'
 import type { CategoryId, DayCategories } from '../types'
 
 export function subtotal(data: DayCategories, categoryId: CategoryId): number {
@@ -18,16 +18,7 @@ export function entryCount(data: DayCategories, categoryId: CategoryId): number 
 }
 
 export function allSubtotals(data: DayCategories): Record<CategoryId, number> {
-  const ids: CategoryId[] = [
-    'gongyang',
-    'changzhu',
-    'jiansi',
-    'gongseng',
-    'qita',
-    'fangsheng',
-  ]
-  return Object.fromEntries(ids.map((id) => [id, subtotal(data, id)])) as Record<
-    CategoryId,
-    number
-  >
+  return Object.fromEntries(
+    CATEGORIES.map((c) => [c.id, subtotal(data, c.id)]),
+  ) as Record<CategoryId, number>
 }

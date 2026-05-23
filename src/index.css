@@ -203,7 +203,7 @@ button {
   color: var(--text-muted);
 }
 
-.category-btn:last-child {
+.category-btn-fangsheng {
   border-color: #c4d4c4;
   background: #f5faf5;
 }
@@ -391,20 +391,13 @@ button {
   box-shadow: var(--shadow);
 }
 
-.keypad-display-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-bottom: 12px;
-}
-
 .keypad-display {
-  flex: 1;
-  min-width: 0;
-  font-size: clamp(1.35rem, 6vw, 2rem);
+  width: 100%;
+  margin-bottom: 12px;
+  font-size: clamp(1.5rem, 7vw, 2.25rem);
   font-weight: 600;
   text-align: right;
-  padding: 10px 12px;
+  padding: 12px 14px;
   background: var(--bg);
   border-radius: 8px;
   color: var(--primary);
@@ -413,14 +406,11 @@ button {
   white-space: nowrap;
 }
 
-.keypad-confirm {
-  flex: 0 0 auto;
-  width: 3.25rem;
-  min-width: 3.25rem;
-  padding: 10px 4px;
-  font-size: 0.8rem;
-  line-height: 1.15;
-  white-space: nowrap;
+.keypad-confirm-full {
+  width: 100%;
+  margin-top: 10px;
+  padding: 14px 20px;
+  font-size: 1.05rem;
 }
 
 .keypad-grid {

@@ -32,18 +32,8 @@ export function Keypad({
 
   return (
     <div className="keypad-block">
-      <div className="keypad-display-row">
-        <div className="keypad-display" aria-live="polite">
-          {value || '0'}
-        </div>
-        <button
-          type="button"
-          className="btn btn-primary keypad-confirm"
-          onClick={onConfirm}
-          disabled={confirmDisabled}
-        >
-          {confirmLabel}
-        </button>
+      <div className="keypad-display" aria-live="polite">
+        {value || '0'}
       </div>
       <div className="keypad-grid">
         {KEYS.flat().map((key) => (
@@ -58,6 +48,14 @@ export function Keypad({
           </button>
         ))}
       </div>
+      <button
+        type="button"
+        className="btn btn-primary keypad-confirm-full"
+        onClick={onConfirm}
+        disabled={confirmDisabled}
+      >
+        {confirmLabel}
+      </button>
     </div>
   )
 }
